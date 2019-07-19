@@ -1,0 +1,9 @@
+# server cfgs
+#server cfgs
+server:
+      servlet:
+          context-path: /TALENTHUNT 
+spring:
+  profiles:
+    active: dev
+   
