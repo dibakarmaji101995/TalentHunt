@@ -1,0 +1,34 @@
+
+<div class="alert alert-success" *ngIf='successMsg'>{{Message}}</div>
+<div class="col-md-4 offset-md-4 card card-body mt-5" >
+    <form action="/requi/saveRequirement" method= "put" #form="ngForm" (ngSubmit)="addRequirement(form)">
+        <h2 class="text-center">Add Requirement</h2>
+        Client Name:<input type="text" name="clientName" id="clientName" placeholder="Enter Client Name" 
+        class="form-control mb-3" ngModel #clientName="ngModel" minlength="3" required>
+        No of Position:<input type="text" name="noOfPosition" id="noOfPosition" placeholder="Enter Number of Position" 
+        class="form-control mb-3" ngModel #noOfPosition="ngModel" minlength="1" required>
+
+        Select Stack :<input type="text" name="stack" id="stack"  class="form-control mb-3" ngModel #clientName="ngModel" minlength="3" required>
+        
+
+        Designation: <input type="text" name="desg" id="desg" placeholder="Enter stack of Candidate" 
+        class="form-control mb-3" ngModel #desg="ngModel" minlength="3" required>
+
+        
+        Experience Required : <input type="text" name="expRequired" id="expRequired" placeholder="Enter experience required" 
+        class="form-control mb-3" ngModel #expRequired="ngModel" minlength="1" required>
+
+        Job Description : <input type="text" name="jobDesc" id="jobDesc" placeholder="Enter job description" 
+        class="form-control mb-3" ngModel #jobDesc="ngModel" minlength="3" required>
+
+        Location : <input type="text" name="location" id="location" placeholder="Enter location" 
+        class="form-control mb-3" ngModel #location="ngModel" minlength="3" required>
+
+    
+            Closing Date :<input type="date" name="closingDate" id="closingDate" placeholder="Enter closing date" 
+            class="form-control mb-3" ngModel #closingDate="ngModel" minlength="3" required>
+        <div class="btn-group col-md-12">
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="form.invalid">Submit</button>
+        </div>
+    </form>

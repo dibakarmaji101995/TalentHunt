@@ -1,0 +1,54 @@
+<div class="alert alert-success" *ngIf='successMsg'>{{Message}}</div>
+<div class="col-md-4 offset-md-4 card card-body mt-5">
+    <h2 class="text-center">Schedule Interview</h2>
+    <form action="/schedule/getAll" method= "post" #form="ngForm" (ngSubmit)="addSchedule(form)" >
+        Candidate Name:<input type="text" name="candidateName" id="candidateName" placeholder="Enter Candiate Name" 
+        class="form-control mb-3" ngModel #candidateName="ngModel" minlength="1" required>
+
+        Email : <input type="email" name="email" id="email" placeholder="Enter Email of Candidate" 
+        class="form-control mb-3" ngModel #email="ngModel" minlength="1" required>
+        
+        CCTC : <input type="text" name="cctc" id="cctc" placeholder="Enter current Company details" 
+        class="form-control mb-3" ngModel #cctc="ngModel" minlength="1" required>
+
+        ECTC :<input type="text" name="ectc" id="ectc" placeholder="Enter experience of Candidate" 
+        class="form-control mb-3" ngModel #ectc="ngModel" minlength="1" required>
+
+        Gender :<input type="text" name="gender" id="gender" placeholder="Enter Candidate Gender" 
+        class="form-control mb-3" ngModel #gender="ngModel" minlength="1" required>
+
+            Current Organization<input type="text" name="currentOrg" id="currentOrg"  placeholder="Yes/No?" class="form-control mb-3" ngModel #currentOrg="ngModel" minlength="3" required>
+
+            Schedule Date : <input type="date" name="scheDate" id="scheDate" placeholder="Enter current cmpany salary in Rupees" 
+            class="form-control mb-3" ngModel #scheDate="ngModel" minlength="1" required>
+  
+         Total Experience : <input type="text" name="totalExperience" id="totalExperience" placeholder="Enter Expecte Salary in Rupees" 
+            class="form-control mb-3" ngModel #totalExperience="ngModel" minlength="1" required>
+
+            Notice Period : <input type="text" name="noticePeriod" id="noticePeriod" placeholder="EnterNotice Period of Candidate" 
+            class="form-control mb-3" ngModel #noticePeriod="ngModel" minlength="1" required >
+
+            Stack : <input type="text" name="stack" id="stack" placeholder="Enter Interview Location" 
+            class="form-control mb-3" ngModel #stack="ngModel" minlength="1" required>
+
+            Relevent Experience : <input type="text" name="releventExp" id="releventExp" placeholder="Enter Interview Panel details" 
+            class="form-control mb-3" ngModel #releventExp="ngModel" minlength="1" required>
+            
+            Location : <input type="text" name="location" id="location" placeholder="Enter Interview Panel details" 
+            class="form-control mb-3" ngModel #location="ngModel" minlength="1" required>
+
+            Contact Number: <input type="text" name="contactNumber" id="contactNumber" placeholder="Enter Interview Panel details" 
+            class="form-control mb-3" ngModel #contactNumber="ngModel" minlength="1" required>
+
+            Ready To Relocate : <input type="text" name="readyToRelocate" id="readyToRelocate" placeholder="Enter Interview Panel details" 
+            class="form-control mb-3" ngModel #readyToRelocate="ngModel" minlength="1" required>
+
+            Interview Panel : <input type="text" name="interviewPanel" id="interviewPanel" placeholder="Enter Interview Panel details" 
+            class="form-control mb-3" ngModel #interviewPanel="ngModel" minlength="1" required>
+     
+        <div class="btn-group col-md-12">
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+            <button type="submit" class="btn btn-outline-primary"  [disabled]="form.invalid">Submit</button>
+        </div>
+    </form>
+</div>    

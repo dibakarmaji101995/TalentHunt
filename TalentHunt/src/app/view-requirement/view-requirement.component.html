@@ -1,0 +1,113 @@
+<div class="alert alert-warning" *ngIf='updateMsg'>{{upMsg}}</div> 
+<div class="alert alert-danger" *ngIf='deleteMsg'>{{delMsg}}</div>
+<div class="table responsive card card-body">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <td>Index</td>
+                <td>Client Name</td>
+                <td>No of Position</td>
+                <td>Select stack</td>
+                <td>Designation</td>
+                <td>Experience Required</td>
+                <td>Job Description</td>
+                <td>Location</td>
+                <td>Closing Date</td>
+            </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor='let requirement of reqService.requirement; index as i'>
+                  <td>{{i+1}}</td>
+                  <td>{{requirement.clientName | uppercase}}</td>
+                  <td>{{requirement.noOfPosition}}</td>
+                  <td>{{requirement.stack}}</td>
+                  <td>{{requirement.desg}}</td>
+                  <td>{{requirement.expRequired}}</td>
+                  <td>{{requirement.jobDesc}}</td>
+                  <td>{{requirement.location}}</td>
+                  <td>{{requirement.closingDate }}</td>
+                  <td>
+                  
+                     <td>
+                      <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModalScrollable" (click)="editRequirement(requirement)">
+                        Update
+                      </button>
+                    </td>
+                    <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                      Remove
+                    </button>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalCenterTitle">Please Confirm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                          <h4 class="text-center text-danger">Are you sure to Delete client {{requirement.clientName}}</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="removeRequirement(requirement.requirementId)" data-dismiss="modal">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- modal ends -->
+                    </tr>
+                    </tbody>
+                    </table>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        
+   <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Update Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <form action="/requi/saveRequirement" method= "post" #form="ngForm" (ngSubmit)="updateRequirement(form)">
+                        <h2 class="text-center">Update Details</h2>
+                        Client Name:<input type="text" name="clientName" id="clientName" placeholder="Enter Client Name" 
+                        class="form-control mb-3" ngModel #clientName="ngModel" minlength="3" required>
+                        No of Position:<input type="text" name="noOfPosition" id="noOfPosition"  placeholder="Enter Number of Position" 
+                        class="form-control mb-3" ngModel #noOfPosition="ngModel" minlength="3" required>
+                
+                        Select Stack :<input type="text" name="stack" id="stack"  class="form-control mb-3" ngModel #clientName="ngModel" minlength="3" required>
+                        
+                
+                        Designation: <input type="text" name="desg" id="desg" placeholder="Enter stack of Candidate" 
+                        class="form-control mb-3" ngModel #desg="ngModel" minlength="3" required>
+                
+                        
+                        Experience Required : <input type="text" name="expRequired" id="expRequired" placeholder="Enter experience required" 
+                        class="form-control mb-3" ngModel #expRequired="ngModel" minlength="3" required>
+                
+                        Job Description : <input type="text" name="jobDesc" id="jobDesc" placeholder="Enter job description" 
+                        class="form-control mb-3" ngModel #jobDesc="ngModel" minlength="3" required>
+                
+                        Location : <input type="text" name="location" id="location" placeholder="Enter location" 
+                        class="form-control mb-3" ngModel #location="ngModel" minlength="3" required>
+                
+                    
+                            Closing Date :<input type="text" name="closingDate" id="closingDate" placeholder="Enter closing date" 
+                            class="form-control mb-3" ngModel #closingDate="ngModel" minlength="3" required>
+                        <div class="btn-group col-md-12">
+                            <button type="reset" class="btn btn-outline-dark">Reset</button>
+                            <button type="submit" class="btn btn-outline-primary" [disabled]="form.invalid">Update</button>
+                        </div>
+                    </form>
+            </div>
+          </div>
+      </div>
+</div>

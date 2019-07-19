@@ -1,0 +1,142 @@
+<div class="card card-body table-responsive-sm">
+        <table class="table table-bordered">
+            <thead >
+                <tr>
+                    <td>Index</td>
+                    <td>Candidate Name</td>
+                    <td>Email</td>
+                    <td>CCTC</td>
+                    <td>ECTC</td>
+                    <td>Select gender</td>
+                    <td>Current Organization</td>
+                    <td>Schedule Date and Time</td>
+                    <td>Total Experience</td>
+                    <td>Notice period</td>
+                    <td>Select Stack</td>
+                    <td>Relevent Experience</td>
+                    <td>Location</td>
+                    <td>Contact Number</td>
+                    <td>Ready to Relocate?</td>
+                    <td>Interview Panel</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let schedule of scheduleService.schedule; index as i'>
+                  <td>{{i+1}}</td>
+                  <td>{{schedule.candidateName | uppercase}}</td>
+                  <td>{{schedule.email}}</td>
+                  <td>{{schedule.cctc}}</td>
+                  <td>{{schedule.ectc}}</td>
+                  <td>{{schedule.gender}}</td>
+                  <td>{{schedule.currentOrg}}</td>
+                  <td>{{schedule.scheDate}}</td>
+                  <td>{{schedule.totalExperience }}</td>
+                  <td>{{schedule.noticePeriod }}</td>
+                  <td>{{schedule.stack }}</td>
+                  <td>{{schedule.releventExp }}</td>
+                  <td>{{schedule.location }}</td>
+                  <td>{{schedule.contactNumber }}</td>
+                  <td>{{schedule.readyToRelocate }}</td>
+                  <td>{{schedule.interviewPanel }}</td>
+                     <td>
+                      <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModalScrollable" (click)="editSchedule(schedule)">
+                        Update
+                      </button>
+                    </td>
+                    <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                      Remove
+                    </button>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalCenterTitle">Please Confirm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                          <h4 class="text-center text-danger">Are you sure to Delete client {{schedule.candidateName}}</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="removeSchedule(schedule.scheduleId)" data-dismiss="modal">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- modal ends -->
+                    </tr>
+                    </tbody>
+        </table>
+    </div>
+  
+    <!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalScrollableTitle">Update Details</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+                <form action="/schedule/saveSchedule" method= "post" #form="ngForm" (ngSubmit)="updateSchedule(form)" >
+                    Candidate Name:<input type="text" name="candidateName" id="candidateName" placeholder="Enter Candiate Name" 
+                    class="form-control mb-3" ngModel #candidateName="ngModel" minlength="1" required>
+            
+                    Email : <input type="email" name="email" id="email" placeholder="Enter Email of Candidate" 
+                    class="form-control mb-3" ngModel #email="ngModel" minlength="1" required>
+                    
+                    CCTC : <input type="text" name="cctc" id="cctc" placeholder="Enter current Company details" 
+                    class="form-control mb-3" ngModel #cctc="ngModel" minlength="1" required>
+            
+                    ECTC :<input type="text" name="ectc" id="ectc" placeholder="Enter experience of Candidate" 
+                    class="form-control mb-3" ngModel #ectc="ngModel" minlength="1" required>
+            
+                    Gender :<input type="text" name="gender" id="gender" placeholder="Enter Candidate Gender" 
+                    class="form-control mb-3" ngModel #gender="ngModel" minlength="1" required>
+            
+                        Current Organization<input type="text" name="currentOrg" id="currentOrg"  placeholder="Yes/No?" class="form-control mb-3" ngModel #currentOrg="ngModel" minlength="3" required>
+            
+                        Schedule Date : <input type="date" name="scheDate" id="scheDate" placeholder="Enter current cmpany salary in Rupees" 
+                        class="form-control mb-3" ngModel #scheDate="ngModel" minlength="1" required>
+              
+                     Total Experience : <input type="text" name="totalExperience" id="totalExperience" placeholder="Enter Expecte Salary in Rupees" 
+                        class="form-control mb-3" ngModel #totalExperience="ngModel" minlength="1" required>
+            
+                        Notice Period : <input type="text" name="noticePeriod" id="noticePeriod" placeholder="EnterNotice Period of Candidate" 
+                        class="form-control mb-3" ngModel #noticePeriod="ngModel" minlength="1" required >
+            
+                        Stack : <input type="text" name="stack" id="stack" placeholder="Enter Interview Location" 
+                        class="form-control mb-3" ngModel #stack="ngModel" minlength="1" required>
+            
+                        Relevent Experience : <input type="text" name="releventExp" id="releventExp" placeholder="Enter Interview Panel details" 
+                        class="form-control mb-3" ngModel #releventExp="ngModel" minlength="1" required>
+                        
+                        Location : <input type="text" name="location" id="location" placeholder="Enter Interview Panel details" 
+                        class="form-control mb-3" ngModel #location="ngModel" minlength="1" required>
+            
+                        Contact Number: <input type="text" name="contactNumber" id="contactNumber" placeholder="Enter Interview Panel details" 
+                        class="form-control mb-3" ngModel #contactNumber="ngModel" minlength="1" required>
+            
+                        Ready To Relocate : <input type="text" name="readyToRelocate" id="readyToRelocate" placeholder="Enter Interview Panel details" 
+                        class="form-control mb-3" ngModel #readyToRelocate="ngModel" minlength="1" required>
+            
+                        Interview Panel : <input type="text" name="interviewPanel" id="interviewPanel" placeholder="Enter Interview Panel details" 
+                        class="form-control mb-3" ngModel #interviewPanel="ngModel" minlength="1" required>
+                        
+                 
+                    <div class="btn-group col-md-12">
+                        <button type="reset" class="btn btn-outline-dark">Reset</button>
+                        <button type="submit" class="btn btn-outline-primary"  [disabled]="form.invalid">Submit</button>
+                    </div>
+                </form>
+             </div>
+           </div>
+       </div>
+</div>
